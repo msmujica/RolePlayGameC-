@@ -1,4 +1,5 @@
 using System.Collections;
+using System.ComponentModel.Design;
 
 namespace Program;
 
@@ -42,7 +43,15 @@ public class elfos
         get { return item; }
         set { item = value; }
     }
-    public Elfos(string Name, string Genero, int Edad, int Hp, int Dmg, ArrayList item)
+
+    private bool vivo;
+    public bool Vivo
+    {
+        get { return vivo; }
+        set { vivo = value; }
+    }
+    
+    public Elfos(string Name, string Genero, int Edad, int Hp, int Dmg, ArrayList Item, bool Vivo)
     {
         this.Name = name;
         this.Genero = genero;   
@@ -50,7 +59,8 @@ public class elfos
         this.Dmg = 50;
         this.Hp = 100;
         this.Item = item;
-        
+        this.Vivo = true;
+
     }
 
     public int valorAtaque()
@@ -60,12 +70,31 @@ public class elfos
 
     public void valorArmor()
     {
-        return 
+        return this.Hp;
     }
 
-    public int atacarElfo()
-    {
+    public void atacarEnano(Enano personaje)
+    {   
+        if (this.Vivo == True){
         
+            personaje.RestarVida(this.Dmg);
+        }
+        else
+        {
+            Console.WriteLine("Estas Muerto.");
+        }
+    }
+
+    public void atacarMago(Mago personaje)
+    {   
+        if (this.Vivo == True){
+        
+            personaje.RestarVida(this.Dmg);
+        }
+        else
+        {
+            Console.WriteLine("Estas Muerto.");
+        }
     }
 
     public int cura()
@@ -73,15 +102,51 @@ public class elfos
         return this.Hp += 25;
     }
 
+    public void RestarVida(int Daño)
+    {   
+        if (this.Vivo == True){
+        this.Hp -= Daño;
+        if (this.Hp <= 0)
+        {
+            this.Vivo = false;
+        }
+        else
+        {
+            Console.WriteLine("Estas Muerto.");
+        }
+    }
+
     public void Additem(Item nombre)
     {
+        if (this.Vivo == True){
         this.Item.Add(nombre);
         this.Dmg += nombre.Daño;
         this.Hp += nombre.Vida;
     }
+        else
+        {
+            Console.WriteLine("Estas Muerto.");
+        }
 
     public void DeleteItem(Item nombre)
     {
-        
+        if (this.Vivo == True){
+            
+            if (this.Item.Contains(nombre))
+            {
+                this.Item.Remove(nombre);
+                this.Dmg -= nombre.ValorAtaque;
+                this.Hp -= nombre.ValorDefensa;
+            }
+                else
+                {
+                    Console.WriteLine("No puedes eliminar un item que no existe");
+                }
+        }
+        else
+        {
+            Console.WriteLine("Estas Muerto.");
+
+        }
     }
 }
