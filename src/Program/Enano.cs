@@ -62,14 +62,23 @@ public class Enano
         return this.Hp;
     }
 
-    public void atacarMago()
+    public void atacarMago(Mago personaje)
     {
-        
+        personaje.RestarVida(this.Dmg);
+    }
+    public void atacarElfo(Elfo personaje)
+    {
+        personaje.RestarVida(this.Dmg);
     }
 
-    public int curar()
+    public void RestarVida(int Daño)
     {
-        return this.Hp += 25;
+        this.Hp -= Daño;
+    }
+
+    public void curar()
+    {
+        this.Hp += 25;
     }
     
     public void AddItem(Item nombre)
@@ -82,7 +91,7 @@ public class Enano
     public void EliminarItem(Item nombre)
     {
         this.Item.Add(nombre);
-        this.Dmg += nombre.Daño;
-        this.Hp += nombre.Vida;
+        this.Dmg -= nombre.Daño;
+        this.Hp -= nombre.Vida;
     }
 }
