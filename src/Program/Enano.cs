@@ -71,7 +71,7 @@ public class Enano
     {
         return this.Hp += 25;
     }
-
+    
     public void AddItem(Item nombre)
     {
         this.Item.Add(nombre);
