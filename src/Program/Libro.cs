@@ -37,7 +37,7 @@ public class Libros
             }
             else
             {
-                hechizos.Add(ponerHechizo);
+                this.setHechizos.Add(ponerHechizo);
             }
         }
 
@@ -51,7 +51,7 @@ public class Libros
         {
             if (((Hechizos)g).NombreHechizo == sacarHechizo.NombreHechizo)
             {
-                hechizos.Remove(sacarHechizo);
+                this.setHechizos.Remove(sacarHechizo);
             }
             else
             {

@@ -120,9 +120,16 @@ public class Elfo
     {
         if (this.Vivo == true)
         {
-            this.Item.Add(nombre);
-            this.Dmg += nombre.ValorAtaque;
-            this.Hp += nombre.ValorDefensa;
+            if (item.Count < 2)
+            {
+                this.Item.Add(nombre);
+                this.Dmg += nombre.ValorAtaque;
+                this.Hp += nombre.ValorDefensa;
+            }
+            else
+            {
+                Console.WriteLine("No puedes agregar mas items, elimina alguno para agregar otro."); 
+            }
         }
         else
         {
