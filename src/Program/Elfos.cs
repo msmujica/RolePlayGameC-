@@ -1,9 +1,9 @@
 using System.Collections;
 using System.ComponentModel.Design;
+using Ucu.Poo.Restaurant;
 
-namespace Program;
-
-public class elfos
+namespace Ucu.Poo.Roleplay;
+public class Elfo
 {
     private string name;
 
@@ -51,14 +51,14 @@ public class elfos
         set { vivo = value; }
     }
     
-    public Elfos(string Name, string Genero, int Edad, int Hp, int Dmg)
+    public Elfo(string Name, string Genero, int Edad, int Hp, int Dmg)
     {
-        this.Name = name;
-        this.Genero = genero;   
-        this.Edad = edad;
+        this.Name = Name;
+        this.Genero = Genero;   
+        this.Edad = Edad;
         this.Dmg = 50;
         this.Hp = 100;
-        this.Item = item;
+        this.Item = new ArrayList();
         this.Vivo = true;
 
     }
@@ -68,14 +68,14 @@ public class elfos
         return this.dmg;
     }
 
-    public void valorArmor()
+    public int valorArmor()
     {
         return this.Hp;
     }
 
     public void atacarEnano(Enano personaje)
     {   
-        if (this.Vivo == True){
+        if (this.Vivo == true){
         
             personaje.RestarVida(this.Dmg);
         }
@@ -85,52 +85,56 @@ public class elfos
         }
     }
 
-    public void atacarMago(Mago personaje)
-    {   
-        if (this.Vivo == True){
-        
-            personaje.RestarVida(this.Dmg);
-        }
-        else
-        {
-            Console.WriteLine("Estas Muerto.");
-        }
-    }
+//    public void atacarMago(Mago personaje)
+//    {   
+//        if (this.Vivo == true){
+//        
+//            personaje.RestarVida(this.Dmg);
+//        }
+//        else
+//        {
+//            Console.WriteLine("Estas Muerto.");
+//        }
+//    }
 
-    public int cura()
+    public void cura()
     {
-        return this.Hp += 25;
+        this.Hp += 25;
     }
 
     public void RestarVida(int Daño)
-    {   
-        if (this.Vivo == True){
-        this.Hp -= Daño;
-        if (this.Hp <= 0)
+    {
+        if (this.Vivo == true)
         {
-            this.Vivo = false;
-        }
-        else
-        {
-            Console.WriteLine("Estas Muerto.");
+            this.Hp -= Daño;
+            if (this.Hp <= 0)
+            {
+                this.Vivo = false;
+            }
+            else
+            {
+                Console.WriteLine("Estas Muerto.");
+            }
         }
     }
 
     public void Additem(Item nombre)
     {
-        if (this.Vivo == True){
-        this.Item.Add(nombre);
-        this.Dmg += nombre.Daño;
-        this.Hp += nombre.Vida;
-    }
+        if (this.Vivo == true)
+        {
+            this.Item.Add(nombre);
+            this.Dmg += nombre.ValorAtaque;
+            this.Hp += nombre.ValorDefensa;
+        }
         else
         {
             Console.WriteLine("Estas Muerto.");
         }
+    }
 
     public void DeleteItem(Item nombre)
     {
-        if (this.Vivo == True){
+        if (this.Vivo == true){
             
             if (this.Item.Contains(nombre))
             {
@@ -138,10 +142,10 @@ public class elfos
                 this.Dmg -= nombre.ValorAtaque;
                 this.Hp -= nombre.ValorDefensa;
             }
-                else
-                {
-                    Console.WriteLine("No puedes eliminar un item que no existe");
-                }
+            else
+            { 
+                Console.WriteLine("No puedes eliminar un item que no existe");
+            }
         }
         else
         {

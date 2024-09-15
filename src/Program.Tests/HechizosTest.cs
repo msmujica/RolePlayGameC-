@@ -1,5 +1,6 @@
 using JetBrains.Annotations;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Ucu.Poo.Restaurant;
 
 namespace Program.Tests;
 
