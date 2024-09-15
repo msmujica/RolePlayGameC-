@@ -1,4 +1,6 @@
 using System;
+using System.Numerics;
+
 namespace Ucu.Poo.Roleplay;
 
 public class Item
@@ -15,7 +17,7 @@ public class Item
     public int ValorAtaque
     {
         get { return valorataque; }
-		set { valorataque = value; }
+        set { valorataque = value; }
     }
 
     private int valordefensa;
@@ -24,12 +26,27 @@ public class Item
         get { return valordefensa; }
         set { valordefensa = value; }
     }
-	
-	public Item(string nombre, int valorataque, int valordefensa)
-	{
-		this.Nombre = nombre;
-		this.ValorAtaque = valorataque;
-		this.ValorDefensa = valordefensa;
-	}
-}
 
+    public bool validacion(string nombre, int valorAtaque, int valorDefensa)
+    {
+        bool valido = false;
+	    
+        if (valorAtaque > 0 && valorDefensa > 0 && nombre != null)
+        {
+            valido = true;
+        }
+
+        return valido;
+    }
+	
+    public Item(string nombre, int valorataque, int valordefensa)
+    {
+        bool valor = validacion(nombre, valorataque, valordefensa);
+        if (valor)
+        {
+            this.Nombre = nombre;
+            this.ValorAtaque = valorataque;
+            this.ValorDefensa = valordefensa;
+        }
+    }
+}
