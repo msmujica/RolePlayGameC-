@@ -1,7 +1,7 @@
 using JetBrains.Annotations;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Ucu.Poo.Roleplay;
 
-namespace Program.Tests;
 
 [TestClass]
 [TestSubject(typeof(Item))]
