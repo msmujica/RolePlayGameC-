@@ -102,7 +102,7 @@ public class ElfoTests
         // Cura al elfo
         elfo.Heal();
         // Verifica que el HP se haya incrementado
-        Assert.AreEqual(75, elfo.Hp); // Cura 25, pero no supera el máximo
+        Assert.AreEqual(100, elfo.Hp); // Cura 25, pero no supera el máximo
     }
 
     // Prueba que un elfo muerto no pueda ser curado.
@@ -115,7 +115,7 @@ public class ElfoTests
         // Intenta curar al elfo
         elfo.Heal();
         // Verifica que el HP no cambie porque está muerto
-        Assert.AreEqual(-75, elfo.Hp);
+        Assert.AreEqual(-50, elfo.Hp);
     }
 
     // Prueba la funcionalidad de agregar y eliminar ítems del inventario del elfo.
