@@ -2,112 +2,137 @@ using JetBrains.Annotations;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ucu.Poo.Roleplay;
 
-
-
 [TestClass]
 [TestSubject(typeof(Enano))]
-public class EnanosTest
+public class EnanoTests
 {
-
-    private Enano enano;
-
-    public void SetUp()
-    {
-        enano = new Enano("Thorin", "Masculino", 195);
-    }
-
+    // Prueba la correcta inicialización de las propiedades del enano.
     [TestMethod]
-    public void TestCrearEnano_ValoresInicialesCorrectos()
+    public void TestInicializacionEnano()
     {
+        Enano enano = new Enano("Thorin", "Masculino", 195);
+        // Verifica que el nombre sea correcto
         Assert.AreEqual("Thorin", enano.Name);
+        // Verifica que el género sea correcto
         Assert.AreEqual("Masculino", enano.Genero);
+        // Verifica que la edad sea correcta
         Assert.AreEqual(195, enano.Edad);
-        Assert.AreEqual(100, enano.Hp); // Valor por defecto
-        Assert.AreEqual(50, enano.Dmg); // Valor por defecto
-        Assert.IsTrue(enano.EstoyVivo); // El personaje debe estar vivo al inicio
-        // Assert.IsEmpty(enano.Item); // Los items deberían estar vacíos al inicio
-    }
-
-    [TestMethod]
-    public void TestValorAtaque_RetornaValorCorrecto()
-    {
-        Assert.AreEqual(50, enano.valorAtaque());
-    }
-
-    [TestMethod]
-    public void TestValorArmadura_RetornaValorCorrecto()
-    {
-        Assert.AreEqual(100, enano.valorArmadura());
-    }
-
-    [TestMethod]
-    public void TestRestarVida_EnanoSigueVivo()
-    {
-        enano.RestarVida(30);
-        Assert.AreEqual(70, enano.Hp);
+        // Verifica que el HP inicial sea el valor por defecto
+        Assert.AreEqual(100, enano.Hp);
+        // Verifica que el daño inicial sea el valor por defecto
+        Assert.AreEqual(50, enano.Dmg);
+        // Verifica que el enano esté vivo al ser creado
         Assert.IsTrue(enano.EstoyVivo);
     }
 
+    // Prueba los valores de ataque y defensa del enano.
     [TestMethod]
-    public void TestRestarVida_EnanoMuere()
+    public void TestAtaqueYDefensaEnano()
     {
-        enano.RestarVida(120); // Más que su HP
-        Assert.AreEqual(-20, enano.Hp);
+        Enano enano = new Enano("Thorin", "Masculino", 195);
+        // Verifica el valor de ataque
+        Assert.AreEqual(50, enano.ValorAtaque());
+        // Verifica el valor de defensa o armadura
+        Assert.AreEqual(100, enano.ValorArmor());
+    }
+
+    // Prueba la funcionalidad de restar vida al enano.
+    [TestMethod]
+    public void TestRestarVidaEnano()
+    {
+        Enano enano = new Enano("Thorin", "Masculino", 195);
+        // Resta 30 puntos de vida
+        enano.RestarVida(30);
+        // Verifica que la vida restante sea la correcta
+        Assert.AreEqual(70, enano.Hp);
+        // Verifica que el enano siga vivo
+        Assert.IsTrue(enano.EstoyVivo);
+    }
+
+    // Prueba que el enano muera correctamente cuando se le reduce la vida por debajo de 0.
+    [TestMethod]
+    public void TestMuerteEnano()
+    {
+        Enano enano = new Enano("Thorin", "Masculino", 195);
+        // Resta 150 puntos de vida, matando al enano
+        enano.RestarVida(150);
+        // Verifica que el enano esté muerto
         Assert.IsFalse(enano.EstoyVivo);
     }
 
-    //       [Test]
-    //       public void TestAtacarMago_EnanoMuerto_NoHaceDaño()
-    //       {
-    //           Mago mago = new Mago("Gandalf", "Masculino", 100, new ArrayList());
-    //           enano.RestarVida(150); // Enano muerto
-    //           enano.atacarMago(mago);
-    //           Assert.AreEqual(100, mago.Hp); // No se resta la vida del mago
-    //        }
-
-//        [TestMethod]
-//        public void TestAtacarElfo_EnanoVivo_HaceDaño()
-//        {
-//            Elfo elfo = new Elfo("Legolas", "Masculino", 100, new ArrayList());
-//            enano.atacarElfo(elfo);
-//            Assert.AreEqual(50, elfo.Hp); // Resta vida al elfo
-//        }
-
+    // Prueba que el enano no pueda atacar a un mago si está muerto.
     [TestMethod]
-    public void TestCurar_EnanoVivo_AumentaHp()
+    public void TestAtacarMagoSinVidaEnano()
     {
-        enano.RestarVida(50); // HP actual = 50
-        enano.curar();
-        Assert.AreEqual(75, enano.Hp); // Aumenta en 25
+        Enano enano = new Enano("Thorin", "Masculino", 195);
+        Libros a = new Libros("Mi gran grimorio");
+        Mago mago = new Mago("Gandalf", "Masculino", 100, a);
+        // Mata al enano
+        enano.RestarVida(150);
+        // Intenta atacar al mago
+        enano.AtacarMago(mago);
+        // Verifica que el mago no reciba daño porque el enano está muerto
+        Assert.AreEqual(100, mago.Hp);
     }
 
+    // Prueba que el enano pueda atacar a un elfo y reducir su HP correctamente.
     [TestMethod]
-    public void TestCurar_EnanoMuerto_NoCura()
+    public void TestAtacarElfoEnano()
     {
-        enano.RestarVida(150); // Enano muerto
-        enano.curar();
-        Assert.AreEqual(-50, enano.Hp); // No cura porque está muerto
+        Enano enano = new Enano("Thorin", "Masculino", 195);
+        Elfo elfo = new Elfo("Legolas", "Masculino", 100);
+        // El enano ataca al elfo
+        enano.AtacarElfo(elfo);
+        // Verifica que el elfo pierda 50 puntos de vida
+        Assert.AreEqual(50, elfo.Hp);
     }
 
+    // Prueba la funcionalidad de curar al enano cuando está vivo.
     [TestMethod]
-    public void TestAddItem_AumentaDmgYHp()
+    public void TestCurarEnano()
     {
+        Enano enano = new Enano("Thorin", "Masculino", 195);
+        // Resta algo de vida al enano
+        enano.RestarVida(20); // HP actual = 80
+        // Cura al enano
+        enano.Heal();
+        // Verifica que el HP se haya incrementado, pero no más allá del máximo de 100
+        Assert.AreEqual(100, enano.Hp);
+    }
+
+    // Prueba que un enano muerto no pueda ser curado.
+    [TestMethod]
+    public void TestNoCuraEnanoMuerto()
+    {
+        Enano enano = new Enano("Thorin", "Masculino", 195);
+        // Mata al enano
+        enano.RestarVida(150);
+        // Intenta curar al enano
+        enano.Heal();
+        // Verifica que el HP no cambie porque está muerto
+        Assert.AreEqual(-50, enano.Hp);
+    }
+
+    // Prueba la funcionalidad de agregar y eliminar ítems del inventario del enano.
+    [TestMethod]
+    public void TestAgregarYEliminarItem()
+    {
+        Enano ENano = new Enano("Fujin", "Masculino", 195);
         Item espada = new Item("Espada", 10, 5);
-        enano.AddItem(espada);
-        //     Assert.Contains(espada, enano.Item);
-        Assert.AreEqual(60, enano.Dmg); // Aumenta dmg en 10
-        Assert.AreEqual(105, enano.Hp); // Aumenta hp en 5
-    }
+        // Agrega un ítem al enano
+        ENano.AddItem(espada);
+        // Verifica que el daño se haya incrementado por el ítem
+        Assert.AreEqual(60, ENano.Dmg);
+        // Verifica que el HP se haya incrementado por el ítem
+        Assert.AreEqual(105, ENano.Hp);
 
-    [TestMethod]
-    public void TestEliminarItem_DisminuyeDmgYHp()
-    {
-        Item escudo = new Item("Escudo", 5, 10);
-        enano.AddItem(escudo);
-        enano.EliminarItem(escudo);
-        Assert.IsFalse(enano.Item.Contains(escudo));
-        Assert.AreEqual(50, enano.Dmg); // Vuelve al dmg original
-        Assert.AreEqual(100, enano.Hp); // Vuelve al hp original
-
+        // Elimina el ítem del enano
+        ENano.DeleteItem(espada);
+        // Verifica que el ítem haya sido eliminado
+        Assert.IsFalse(ENano.Item.Contains(espada));
+        // Verifica que el daño vuelva a su valor original
+        Assert.AreEqual(50, ENano.Dmg);
+        // Verifica que el HP vuelva a su valor original
+        Assert.AreEqual(100, ENano.Hp);
     }
 }
