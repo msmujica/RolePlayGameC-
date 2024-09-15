@@ -51,7 +51,7 @@ public class elfos
         set { vivo = value; }
     }
     
-    public Elfos(string Name, string Genero, int Edad, int Hp, int Dmg, ArrayList Item, bool Vivo)
+    public Elfos(string Name, string Genero, int Edad, int Hp, int Dmg)
     {
         this.Name = name;
         this.Genero = genero;   
