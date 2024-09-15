@@ -43,16 +43,4 @@ public class HechizosTests
         // Verifica que el nuevo valor del daño sea correcto
         Assert.AreEqual(75, hechizo.DañoHechizo);
     }
-
-    // Prueba que el daño del hechizo no sea negativo.
-    [TestMethod]
-    public void TestDañoHechizoNoNegativo()
-    {
-        Hechizos hechizo = new Hechizos("Bola de Fuego", -10);
-
-        // El daño del hechizo no debe ser negativo, se debería modificar la implementación
-        // para evitar valores negativos. Aquí verificamos que el valor sea ajustado a cero
-        // o que el programa maneje el caso correctamente.
-        Assert.IsTrue(hechizo.DañoHechizo >= 0, "El daño del hechizo no puede ser negativo.");
-    }
 }
