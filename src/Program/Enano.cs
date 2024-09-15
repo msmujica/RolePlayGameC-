@@ -81,16 +81,16 @@ public class  Enano
 //        }
 //    }
 
-//    public void atacarElfo(Elfo personaje)
-//    {
-//        if (this.EstoyVivo == true){
-//            personaje.RestarVida(this.Dmg);
-//        }
-//        else
-//        {
-//            Console.WriteLine("No puedes hacer ninguna accion tu personaje esta muerto");
-//        }    
-//    }
+    public void atacarElfo(Elfo personaje)
+    {
+        if (this.EstoyVivo == true){
+            personaje.RestarVida(this.Dmg);
+        }
+        else
+        {
+            Console.WriteLine("No puedes hacer ninguna accion tu personaje esta muerto");
+        }    
+    }
 
     public void RestarVida(int Daño)
     {
