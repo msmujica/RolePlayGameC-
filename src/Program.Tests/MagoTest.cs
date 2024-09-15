@@ -14,12 +14,12 @@ public class MagoTest
 
         Hechizos FireBall = new Hechizos("FireBall", 20);
         Libros grimorio = new Libros("5 trvols");
-        grimorio.agregarHechizo(FireBall);
+        grimorio.AddHechizo(FireBall);
         
         
         Mago mago = new Mago("Gandalf", "Masculino", 100, grimorio);
         
-        mago.atacarEnano(enano, FireBall);
+        mago.AtacarEnano(enano, FireBall);
 
         Assert.AreEqual(70, enano.Hp);
     }
@@ -31,12 +31,12 @@ public class MagoTest
 
         Hechizos FireBall = new Hechizos("FireBall", 20);
         Libros grimorio = new Libros("5 trvols");
-        grimorio.agregarHechizo(FireBall);
+        grimorio.AddHechizo(FireBall);
         
         
         Mago mago = new Mago("Gandalf", "Masculino", 100, grimorio);
         
-        mago.atacarElfo(elfo, FireBall);
+        mago.AtacarElfo(elfo, FireBall);
 
         Assert.AreEqual(70, elfo.Hp);
     }

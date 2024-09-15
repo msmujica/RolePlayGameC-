@@ -60,28 +60,28 @@ public class  Enano
         this.EstoyVivo = true;
     }
 
-    public int valorAtaque()
+    public int ValorAtaque()
     {
         return this.Dmg;
     }
 
-    public int valorArmadura()
+    public int ValorArmor()
     {
         return this.Hp;
     }
 
-//    public void atacarMago(Mago personaje)
-//    {
-//        if (this.EstoyVivo == true){
-//            personaje.RestarVida(this.Dmg);
-//        }
-//        else
-//        {
-//            Console.WriteLine("No puedes hacer ninguna accion tu personaje esta muerto");
-//        }
-//    }
+    public void AtacarMago(Mago personaje)
+    {
+        if (this.EstoyVivo == true){
+            personaje.RestarVida(this.Dmg);
+        }
+        else
+        {
+            Console.WriteLine("No puedes hacer ninguna accion tu personaje esta muerto");
+        }
+    }
 
-    public void atacarElfo(Elfo personaje)
+    public void AtacarElfo(Elfo personaje)
     {
         if (this.EstoyVivo == true){
             personaje.RestarVida(this.Dmg);
@@ -108,7 +108,7 @@ public class  Enano
         }    
     }
 
-    public void curar()
+    public void Heal()
     { 
         if (this.EstoyVivo == true){
             this.Hp += 25;
@@ -142,7 +142,7 @@ public class  Enano
         }
     }
 
-    public void EliminarItem(Item nombre)
+    public void DeleteItem(Item nombre)
     {
         if (this.EstoyVivo == true){
             if (this.Item.Contains(nombre))

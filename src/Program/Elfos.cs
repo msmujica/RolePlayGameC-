@@ -42,11 +42,11 @@ public class Elfo
         set { item = value; }
     }
 
-    private bool vivo;
-    public bool Vivo
+    private bool estoyvivo;
+    public bool EstoyVivo
     {
-        get { return vivo; }
-        set { vivo = value; }
+        get { return estoyvivo; }
+        set { estoyvivo = value; }
     }
     
     public Elfo(string Name, string Genero, int Edad)
@@ -57,23 +57,23 @@ public class Elfo
         this.Dmg = 50;
         this.Hp = 100;
         this.Item = new ArrayList();
-        this.Vivo = true;
+        this.EstoyVivo = true;
 
     }
 
-    public int valorAtaque()
+    public int ValorAtaque()
     {
         return this.dmg;
     }
 
-    public int valorArmor()
+    public int ValorArmor()
     {
         return this.Hp;
     }
 
-    public void atacarEnano(Enano personaje)
+    public void AtacarEnano(Enano personaje)
     {   
-        if (this.Vivo == true){
+        if (this.EstoyVivo == true){
         
             personaje.RestarVida(this.Dmg);
         }
@@ -83,21 +83,21 @@ public class Elfo
         }
     }
 
-//    public void atacarMago(Mago personaje)
-//    {   
-//        if (this.Vivo == true){
-//        
-//            personaje.RestarVida(this.Dmg);
-//        }
-//        else
-//        {
-//            Console.WriteLine("Estas Muerto.");
-//        }
-//    }
+    public void AtacarMago(Mago personaje)
+    {   
+        if (this.EstoyVivo == true){
+        
+            personaje.RestarVida(this.Dmg);
+        }
+        else
+        {
+            Console.WriteLine("Estas Muerto.");
+        }
+    }
 
-    public void cura()
+    public void Heal()
     {
-        if (this.Vivo == true){
+        if (this.EstoyVivo == true){
             this.Hp += 25;
             if (this.Hp > 100)
             {
@@ -112,12 +112,12 @@ public class Elfo
 
     public void RestarVida(int Daño)
     {
-        if (this.Vivo == true)
+        if (this.EstoyVivo == true)
         {
             this.Hp -= Daño;
             if (this.Hp <= 0)
             {
-                this.Vivo = false;
+                this.EstoyVivo = false;
             }
             else
             {
@@ -128,7 +128,7 @@ public class Elfo
 
     public void Additem(Item nombre)
     {
-        if (this.Vivo == true)
+        if (this.EstoyVivo == true)
         {
             if (item.Count < 2)
             {
@@ -149,7 +149,7 @@ public class Elfo
 
     public void DeleteItem(Item nombre)
     {
-        if (this.Vivo == true){
+        if (this.EstoyVivo == true){
             
             if (this.Item.Contains(nombre))
             {

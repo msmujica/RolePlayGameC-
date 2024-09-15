@@ -66,17 +66,17 @@ public class Mago
         this.Item.Add(grimorio);
     }
 
-    public int valorAtaque()
+    public int ValorAtaque()
     {
-        return this.dmg;
+        return this.Dmg;
     }
 
-    public int valorArmor()
+    public int ValorArmor()
     {
         return this.Hp;
     }
 
-    public void atacarEnano(Enano personaje, Hechizos hechiz)
+    public void AtacarEnano(Enano personaje, Hechizos hechiz)
     {
         if (this.Vivo)
         {
@@ -84,7 +84,7 @@ public class Mago
             {
                 if (grimorio is Libros libros)
                 {
-                    foreach (var h in libros.setHechizos)
+                    foreach (var h in libros.SetHechizos)
                     {
                         if (hechiz.NombreHechizo == ((Hechizos)h).NombreHechizo)
                         {
@@ -103,7 +103,7 @@ public class Mago
         }
     }
     
-    public void atacarElfo(Elfo personaje, Hechizos hechiz)
+    public void AtacarElfo(Elfo personaje, Hechizos hechiz)
    {
        if (this.Vivo)
        {
@@ -111,7 +111,7 @@ public class Mago
            {
                if (grimorio is Libros libros)
                {
-                   foreach (var h in libros.setHechizos)
+                   foreach (var h in libros.SetHechizos)
                    {
                        if (hechiz.NombreHechizo == ((Hechizos)h).NombreHechizo)
                        {
@@ -130,7 +130,7 @@ public class Mago
        }
    }
     
-    public void cura()
+    public void Heal()
     {
         this.Hp += 25;
     }
