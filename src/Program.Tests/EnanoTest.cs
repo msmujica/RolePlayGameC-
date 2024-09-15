@@ -2,15 +2,12 @@ using JetBrains.Annotations;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ucu.Poo.Roleplay;
 
-
-
 [TestClass]
 [TestSubject(typeof(Enano))]
 public class EnanoTest
 {
-
     [TestMethod]
-    public void TestCrearEnano_ValoresInicialesCorrectos()
+    public void testFuncionalidadesEnanos()
     {
         Enano enano = new Enano("Thorin", "Masculino", 195);
         Assert.AreEqual("Thorin", enano.Name);
