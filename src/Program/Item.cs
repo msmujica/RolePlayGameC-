@@ -1,4 +1,5 @@
-using System.Collections;
+using System;
+namespace Ucu.Poo.Roleplay;
 
 public class Item
 {

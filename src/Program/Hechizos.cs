@@ -1,3 +1,5 @@
+namespace Ucu.Poo.Roleplay;
+
 public class Hechizos
 {
     private string nombreHechizo;
