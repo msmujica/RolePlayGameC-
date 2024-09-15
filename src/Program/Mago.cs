@@ -46,11 +46,11 @@ public class Mago
         set { item = value; }
     }
 
-    private bool vivo;
-    public bool Vivo
+    private bool estoyvivo;
+    public bool EstoyVivo
     {
-        get { return vivo; }
-        set { vivo = value; }
+        get { return estoyvivo; }
+        set { estoyvivo = value; }
     }
     
     public Mago(string Name, string Genero, int Edad, Libros grimorio)
@@ -61,28 +61,28 @@ public class Mago
         this.Dmg = 50;
         this.Hp = 100;
         this.Item = new ArrayList();
-        this.Vivo = true;
+        this.EstoyVivo = true;
 
         this.Item.Add(grimorio);
     }
 
-    public int valorAtaque()
+    public int ValorAtaque()
     {
         return this.dmg;
     }
 
-    public int valorArmor()
+    public int ValorArmor()
     {
         return this.Hp;
     }
 
-    public void atacarEnano(Enano personaje, Hechizos hechiz)
+    public void AtacarEnano(Enano personaje, Hechizos hechiz)
     {
-        if (this.Vivo == true)
+        if (this.EstoyVivo == true)
         {
             foreach (var item in this.Item)
             {
-                foreach (var h in ((Libros)item).setHechizos)
+                foreach (var h in ((Libros)item).SetHechizos)
                 {
                     if (hechiz.NombreHechizo == h)
                     {
@@ -97,9 +97,9 @@ public class Mago
         }
     }
     
-    public void atacarElfo(Elfo personaje)
+    public void AtacarElfo(Elfo personaje)
    {
-      if (this.Vivo == true){ 
+      if (this.EstoyVivo == true){ 
           
           personaje.RestarVida(this.Dmg);
       }
@@ -109,19 +109,19 @@ public class Mago
       }    
    }
     
-    public void cura()
+    public void Heal()
     {
         this.Hp += 25;
     }
 
     public void RestarVida(int Daño)
     {
-        if (this.Vivo == true)
+        if (this.EstoyVivo == true)
         {
             this.Hp -= Daño;
             if (this.Hp <= 0)
             {
-                this.Vivo = false;
+                this.EstoyVivo = false;
             }
             else
             {
@@ -132,7 +132,7 @@ public class Mago
 
     public void Additem(Item nombre)
     {
-        if (this.Vivo == true)
+        if (this.EstoyVivo == true)
         {
             if(this.Item.Count < 2){
                 this.Item.Add(nombre);
@@ -148,7 +148,7 @@ public class Mago
 
     public void DeleteItem(Item nombre)
     {
-        if (this.Vivo == true){
+        if (this.EstoyVivo == true){
             
             if (this.Item.Contains(nombre))
             {

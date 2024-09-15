@@ -14,7 +14,7 @@ public class Libros
         set { nombreLibro = value; }
     }
 
-    public ArrayList setHechizos
+    public ArrayList SetHechizos
     {
         get { return hechizos; }
         set { hechizos = value; }
@@ -26,7 +26,7 @@ public class Libros
         this.hechizos = new ArrayList();
     }
 
-    public string agregarHechizo(Hechizos ponerHechizo)
+    public string AddHechizo(Hechizos ponerHechizo)
     {
         foreach (var g in this.hechizos)
         {
@@ -37,7 +37,7 @@ public class Libros
             }
             else
             {
-                this.setHechizos.Add(ponerHechizo);
+                this.SetHechizos.Add(ponerHechizo);
             }
         }
 
@@ -45,13 +45,13 @@ public class Libros
         return $"{ponerHechizo.NombreHechizo}";
     }
 
-    public string eliminarHechizos(Hechizos sacarHechizo)
+    public string DeleteHechizos(Hechizos sacarHechizo)
     {
         foreach (var g in this.hechizos)
         {
             if (((Hechizos)g).NombreHechizo == sacarHechizo.NombreHechizo)
             {
-                this.setHechizos.Remove(sacarHechizo);
+                this.SetHechizos.Remove(sacarHechizo);
             }
             else
             {
@@ -62,10 +62,10 @@ public class Libros
         return "Eliminado";
     }
 
-    public string mostrarHechizos()
+    public string MisHechizos()
     {
         StringBuilder mostrar = new StringBuilder();
-        foreach (var hechizo in this.setHechizos)
+        foreach (var hechizo in this.SetHechizos)
         {
             mostrar.Append(hechizo);
         }
