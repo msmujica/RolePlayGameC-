@@ -6,8 +6,7 @@ using Ucu.Poo.Roleplay;
 [TestClass]
 [TestSubject(typeof(Item))]
 public class ItemTest
-{
-
+{ 
     [TestMethod]
     //Se testea la creacion del Item
     public void createItem()
