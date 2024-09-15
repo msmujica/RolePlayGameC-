@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Security.Cryptography;
 
-namespace Program;
+namespace Ucu.Poo.Restaurant;
 
 public class Enano
 {
@@ -42,14 +42,23 @@ public class Enano
         get { return item; }
         set { item = value; }
     }
-    public Enano(string Name, string Genero, int Edad, ArrayList Item)
+
+    private bool estoyvivo;
+    public bool EstoyVivo
+    {
+        get { return estoyvivo; }
+        set { estoyvivo = value; }
+    }
+    
+    public Enano(string Name, string Genero, int Edad)
     {
         this.Name = Name;
         this.Genero = Genero;
         this.Edad = Edad;
         this.hp = 100;
         this.dmg = 50;
-        this.item = Item;
+        this.item = new ArrayList();
+        this.EstoyVivo = true;
     }
 
     public int valorAtaque()
@@ -62,36 +71,87 @@ public class Enano
         return this.Hp;
     }
 
-    public void atacarMago(Mago personaje)
-    {
-        personaje.RestarVida(this.Dmg);
-    }
-    public void atacarElfo(Elfo personaje)
-    {
-        personaje.RestarVida(this.Dmg);
-    }
+//    public void atacarMago(Mago personaje)
+//    {
+//        if (this.EstoyVivo == true){
+//            personaje.RestarVida(this.Dmg);
+//        }
+//        else
+//        {
+//            Console.WriteLine("No puedes hacer ninguna accion tu personaje esta muerto");
+//        }
+//    }
+
+//    public void atacarElfo(Elfo personaje)
+//    {
+//        if (this.EstoyVivo == true){
+//            personaje.RestarVida(this.Dmg);
+//        }
+//        else
+//        {
+//            Console.WriteLine("No puedes hacer ninguna accion tu personaje esta muerto");
+//        }    
+//    }
 
     public void RestarVida(int Daño)
     {
-        this.Hp -= Daño;
+        if (this.EstoyVivo == true){
+            this.Hp -= Daño;
+        if (this.Hp <= 0)
+        {
+            this.EstoyVivo = false;
+        }
+        
+        }
+        else
+        {
+            Console.WriteLine("No puedes hacer ninguna accion tu personaje esta muerto");
+        }    
     }
 
     public void curar()
-    {
-        this.Hp += 25;
+    { 
+        if (this.EstoyVivo == true){
+
+            this.Hp += 25;
+        }
+        else
+        {
+            Console.WriteLine("No puedes hacer ninguna accion tu personaje esta muerto");
+        }    
     }
-    
     public void AddItem(Item nombre)
     {
-        this.Item.Add(nombre);
-        this.Dmg += nombre.Daño;
-        this.Hp += nombre.Vida;
+        if (this.EstoyVivo == true){
+
+            this.Item.Add(nombre);
+            this.Dmg += nombre.ValorAtaque;
+            this.Hp += nombre.ValorDefensa;
+        }
+        else
+        {
+            Console.WriteLine("No puedes hacer ninguna accion tu personaje esta muerto");
+        }
     }
 
     public void EliminarItem(Item nombre)
     {
-        this.Item.Add(nombre);
-        this.Dmg -= nombre.Daño;
-        this.Hp -= nombre.Vida;
+        if (this.EstoyVivo == true){
+            if (this.Item.Contains(nombre))
+            {
+                this.Item.Remove(nombre);
+                this.Dmg -= nombre.ValorAtaque;
+                this.Hp -= nombre.ValorDefensa;
+            }
+            else
+            {
+                Console.WriteLine("No puedes eliminar un item que no existe");
+            }
+        }
+        else
+        {
+            Console.WriteLine("No puedes hacer ninguna accion tu personaje esta muerto");
+        }
     }
-}
+
+    }

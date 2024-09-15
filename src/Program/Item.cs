@@ -1,6 +1,5 @@
 using System;
-
-namespace Library;
+namespace Ucu.Poo.Restaurant;
 
 public class Item
 {
@@ -13,7 +12,7 @@ public class Item
     }
 
     private int valorataque;
-    public int ValorAtaque;
+    public int ValorAtaque
     {
         get { return valorataque; }
 		set { valorataque = value; }
