@@ -95,7 +95,7 @@ public class MagoTest
         
         mago.Additem(espada);
         Assert.AreEqual(105, mago.Hp);
-        Assert.AreEqual(15, mago.Dmg);
+        Assert.AreEqual(20, mago.Dmg);
     }
 
     [TestMethod]
