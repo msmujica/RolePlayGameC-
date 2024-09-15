@@ -38,14 +38,6 @@ public class Mago
         get { return dmg; }
         set { dmg = value; }
     }
-
-    private int libro;
-
-    public int Libro
-    {
-        get { return libro; }
-        set { libro = value; }
-    }
     
     private ArrayList item;
     public ArrayList Item
@@ -61,7 +53,7 @@ public class Mago
         set { vivo = value; }
     }
     
-    public Mago(string Name, string Genero, int Edad)
+    public Mago(string Name, string Genero, int Edad, Libros grimorio)
     {
         this.Name = Name;
         this.Genero = Genero;   
@@ -70,8 +62,8 @@ public class Mago
         this.Hp = 100;
         this.Item = new ArrayList();
         this.Vivo = true;
-        this.Libro = ;
 
+        this.Item.Add(grimorio);
     }
 
     public int valorAtaque()
@@ -84,11 +76,20 @@ public class Mago
         return this.Hp;
     }
 
-    public void atacarEnano(Enano personaje)
-    {   
-        if (this.Vivo == true){
-        
-            personaje.RestarVida(this.Dmg);
+    public void atacarEnano(Enano personaje, Hechizos hechiz)
+    {
+        if (this.Vivo == true)
+        {
+            foreach (var item in this.Item)
+            {
+                foreach (var h in ((Libros)item).setHechizos)
+                {
+                    if (hechiz.NombreHechizo == h)
+                    {
+                        personaje.RestarVida(hechiz.DañoHechizo + this.Dmg);
+                    }
+                }
+            }
         }
         else
         {
@@ -133,9 +134,11 @@ public class Mago
     {
         if (this.Vivo == true)
         {
-            this.Item.Add(nombre);
-            this.Dmg += nombre.ValorAtaque;
-            this.Hp += nombre.ValorDefensa;
+            if(this.Item.Count < 2){
+                this.Item.Add(nombre);
+                this.Dmg += nombre.ValorAtaque;
+                this.Hp += nombre.ValorDefensa;
+            }
         }
         else
         {
