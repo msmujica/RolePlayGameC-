@@ -58,7 +58,7 @@ public class Mago
         this.Name = Name;
         this.Genero = Genero;   
         this.Edad = Edad;
-        this.Dmg = 50;
+        this.Dmg = 10;
         this.Hp = 100;
         this.Item = new ArrayList();
         this.Vivo = true;
@@ -78,35 +78,56 @@ public class Mago
 
     public void atacarEnano(Enano personaje, Hechizos hechiz)
     {
-        if (this.Vivo == true)
+        if (this.Vivo)
         {
-            foreach (var item in this.Item)
+            foreach (var grimorio in this.Item)
             {
-                foreach (var h in ((Libros)item).setHechizos)
+                if (grimorio is Libros libros)
                 {
-                    if (hechiz.NombreHechizo == h)
+                    foreach (var h in libros.setHechizos)
                     {
-                        personaje.RestarVida(hechiz.DañoHechizo + this.Dmg);
+                        if (hechiz.NombreHechizo == ((Hechizos)h).NombreHechizo)
+                        {
+                            int dañoTotal = ((Hechizos)h).DañoHechizo + this.Dmg;
+                            personaje.RestarVida(dañoTotal);
+                            return;
+                        }
                     }
                 }
             }
+            Console.WriteLine("El hechizo no está en el grimorio.");
         }
         else
         {
-            Console.WriteLine("Estas Muerto.");
+            Console.WriteLine("El mago está muerto y no puede atacar.");
         }
     }
     
-    public void atacarElfo(Elfo personaje)
+    public void atacarElfo(Elfo personaje, Hechizos hechiz)
    {
-      if (this.Vivo == true){ 
-          
-          personaje.RestarVida(this.Dmg);
-      }
-      else
-      {
-          Console.WriteLine("No puedes hacer ninguna accion tu personaje esta muerto");
-      }    
+       if (this.Vivo)
+       {
+           foreach (var grimorio in this.Item)
+           {
+               if (grimorio is Libros libros)
+               {
+                   foreach (var h in libros.setHechizos)
+                   {
+                       if (hechiz.NombreHechizo == ((Hechizos)h).NombreHechizo)
+                       {
+                           int dañoTotal = ((Hechizos)h).DañoHechizo + this.Dmg;
+                           personaje.RestarVida(dañoTotal);
+                           return;
+                       }
+                   }
+               }
+           }
+           Console.WriteLine("El hechizo no está en el grimorio.");
+       }
+       else
+       {
+           Console.WriteLine("El mago está muerto y no puede atacar.");
+       }
    }
     
     public void cura()

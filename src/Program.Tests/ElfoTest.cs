@@ -17,7 +17,6 @@ public class ElfoTest
         Assert.AreEqual(100, elfo.Hp); // Valor por defecto
         Assert.AreEqual(50, elfo.Dmg); // Valor por defecto
         Assert.IsTrue(elfo.Vivo); // El personaje debe estar vivo al inicio
-        // Assert.IsEmpty(elfo.Item); // Los items deberían estar vacíos al inicio
         Assert.AreEqual(50, elfo.valorAtaque());
         Assert.AreEqual(100, elfo.valorArmor());
         elfo.RestarVida(30);
