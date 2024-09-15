@@ -1,5 +1,5 @@
 using System;
-namespace Ucu.Poo.Restaurant;
+namespace Ucu.Poo.Roleplay;
 
 public class Item
 {

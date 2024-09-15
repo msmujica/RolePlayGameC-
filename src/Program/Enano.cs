@@ -1,7 +1,6 @@
 using System.Collections;
-using System.Security.Cryptography;
-
-namespace Ucu.Poo.Restaurant;
+using System.ComponentModel.Design;
+namespace Ucu.Poo.Roleplay;
 
 public class Enano
 {
