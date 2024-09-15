@@ -67,73 +67,97 @@ public class Mago
     }
 
     public int ValorAtaque()
-    {
+    {   
+        //Devuelve el daño que puede causar el Mago
         return this.Dmg;
     }
 
     public int ValorArmor()
     {
+        //Devuelve la vida restante del Mago
         return this.Hp;
     }
-
+    //Metodo para atacar al Enano, con hechizos
     public void AtacarEnano(Enano personaje, Hechizos hechiz)
     {
+        //Se verifica que el mago este vivo
         if (this.Vivo)
         {
+            //Recoremos los objetos del inventario del mago
             foreach (var grimorio in this.Item)
             {
+                //Se verifica si el objeto es de tipo "Libros"
                 if (grimorio is Libros libros)
                 {
+                    //Recorremos la lista de hechizos en el libro
                     foreach (var h in libros.SetHechizos)
                     {
+                        //Verifica si el nombre del hechizo es el mismo del libro
                         if (hechiz.NombreHechizo == ((Hechizos)h).NombreHechizo)
                         {
+                            //Se calcula el daño total del mago(daño del mago + daño del hechizo)
                             int dañoTotal = ((Hechizos)h).DañoHechizo + this.Dmg;
+                            //El objetivo recibe el daño
                             personaje.RestarVida(dañoTotal);
+                            //Salimos del metodo
                             return;
                         }
                     }
                 }
             }
+            //Si no se encuentra el hechizo, no puede atacar
             Console.WriteLine("El hechizo no está en el grimorio.");
         }
         else
         {
+            //Si el mago esta muerto, no puede atacar
             Console.WriteLine("El mago está muerto y no puede atacar.");
         }
     }
-    
+    //Metodo para atacar al Elfo, con hechizos
     public void AtacarElfo(Elfo personaje, Hechizos hechiz)
    {
+       //Se verifica que el mago este vivo
        if (this.Vivo)
        {
+           //Recoremos los objetos del inventario del mago
            foreach (var grimorio in this.Item)
            {
+               //Se verifica si el objeto es de tipo "Libros"
                if (grimorio is Libros libros)
                {
+                   //Recorremos la lista de hechizos en el libro
                    foreach (var h in libros.SetHechizos)
                    {
+                       //Verifica si el nombre del hechizo es el mismo del libro
                        if (hechiz.NombreHechizo == ((Hechizos)h).NombreHechizo)
                        {
+                           //Se calcula el daño total del mago(daño del mago + daño del hechizo)
                            int dañoTotal = ((Hechizos)h).DañoHechizo + this.Dmg;
+                           //El objetivo recibe el daño
                            personaje.RestarVida(dañoTotal);
+                           //Salimos del metodo
                            return;
                        }
                    }
                }
            }
+           //Si no se encuentra el hechizo, no puede atacar
            Console.WriteLine("El hechizo no está en el grimorio.");
        }
        else
        {
+           //Si el mago esta muerto, no puede atacar
            Console.WriteLine("El mago está muerto y no puede atacar.");
        }
    }
-    
+    //Metodo para poder curarze
     public void Heal()
     {
         if (this.Vivo == true){
+            //Se aumenta la vida
             this.Hp += 25;
+            //Se implementa el no poder aumentar la vida al llegar a 100 puntos
             if (this.Hp > 100)
             {
                 this.Hp = 100;
@@ -144,12 +168,15 @@ public class Mago
             Console.WriteLine("No puedes hacer ninguna accion tu personaje esta muerto");
         }    
     }
-
+    //Metodo para reducir la vida en funcion del daño recibido
     public void RestarVida(int Daño)
-    {
+    {   
+        //Solo recibira daño si mago esta vivo
         if (this.Vivo == true)
-        {
+        {   
+            //Se reduce la vida en base al daño recibido
             this.Hp -= Daño;
+            //Si la vida del mago llega a 0 o menos, este muere
             if (this.Hp <= 0)
             {
                 this.Vivo = false;

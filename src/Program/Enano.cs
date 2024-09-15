@@ -62,40 +62,54 @@ public class  Enano
 
     public int ValorAtaque()
     {
+        //Devuelve el daño que puede causar el Enano
         return this.Dmg;
     }
 
     public int ValorArmor()
     {
+        //Devuelve la vida restante del elfo
         return this.Hp;
     }
-
+    
+    //Metodo para atacar al Mago
     public void AtacarMago(Mago personaje)
-    {
+    {   
+        //Solo funciona si el enano esta vivo
         if (this.EstoyVivo == true){
+            // Al recibir daño, se reduce la vida
             personaje.RestarVida(this.Dmg);
         }
         else
-        {
+        {   
+            //No atacara si estas muerto
             Console.WriteLine("No puedes hacer ninguna accion tu personaje esta muerto");
         }
     }
-
+    
+    //Metodo para atacar al Elfo
     public void AtacarElfo(Elfo personaje)
-    {
+    {   
+        //Solo funciona si el enano esta vivo
         if (this.EstoyVivo == true){
+            // Al recibir daño, se reduce la vida
             personaje.RestarVida(this.Dmg);
         }
         else
         {
+            //No atacara si estas muerto
             Console.WriteLine("No puedes hacer ninguna accion tu personaje esta muerto");
         }    
     }
-
+    
+    //Metodo para reducir la vida en funcion del daño recibido
     public void RestarVida(int Daño)
-    {
+    {   
+        //Solo recibira daño si enano esta vivo
         if (this.EstoyVivo == true){
+            //Se reduce la vida en base al daño recibido
             this.Hp -= Daño;
+            //Si la vida del enano llega a 0 o menos, este muere
         if (this.Hp <= 0)
         {
             this.EstoyVivo = false;
@@ -107,11 +121,14 @@ public class  Enano
             Console.WriteLine("No puedes hacer ninguna accion tu personaje esta muerto");
         }    
     }
-
+    
+    //Metodo para poder curarze
     public void Heal()
     { 
         if (this.EstoyVivo == true){
+            //Se aumenta la vida
             this.Hp += 25;
+            //Se implementa el no poder aumentar la vida al llegar a 100 puntos
             if (this.Hp > 100)
             {
                 this.Hp = 100;
