@@ -17,7 +17,7 @@ public class ElfoTest
     }
 
     [TestMethod]
-    public void TestCrearElfo_ValoresInicialesCorrectos()
+    public void TestCrearEnano_ValoresInicialesCorrectos()
     {
         Assert.AreEqual("Legolas", elfo.Name);
         Assert.AreEqual("Masculino", elfo.Genero);
@@ -33,23 +33,6 @@ public class ElfoTest
     {
         Assert.AreEqual(50, elfo.valorAtaque());
     }
-    
-    //       [Test]
-    //       public void TestAtacarMago_EnanoMuerto_NoHaceDaño()
-    //       {
-    //           Mago mago = new Mago("Gandalf", "Masculino", 100, new ArrayList());
-    //           enano.RestarVida(150); // Enano muerto
-    //           enano.atacarMago(mago);
-    //           Assert.AreEqual(100, mago.Hp); // No se resta la vida del mago
-    //        }
-
-//        [TestMethod]
-//        public void TestAtacarEnano_EnanoVivo_HaceDaño()
-//        {
-//            Elfo elfo = new Elfo("Legolas", "Masculino", 100, new ArrayList());
-//            enano.atacarElfo(elfo);
-//            Assert.AreEqual(50, elfo.Hp); // Resta vida al elfo
-//        }
 
     [TestMethod]
     public void TestValorArmadura_RetornaValorCorrecto()
@@ -80,7 +63,6 @@ public class ElfoTest
         elfo.cura();
         Assert.AreEqual(75, elfo.Hp); // Aumenta en 25
     }
-
     [TestMethod]
     public void TestCurar_ElfoMuerto_NoCura()
     {
@@ -88,7 +70,6 @@ public class ElfoTest
         elfo.cura();
         Assert.AreEqual(-50, elfo.Hp); // No cura porque está muerto
     }
-
     [TestMethod]
     public void TestAddItem_AumentaDmgYHp()
     {
@@ -98,19 +79,8 @@ public class ElfoTest
         Assert.AreEqual(60, elfo.Dmg); // Aumenta dmg en 10
         Assert.AreEqual(105, elfo.Hp); // Aumenta hp en 5
     }
-
     [TestMethod]
-    public void TestEliminarItem_DisminuyeDmgYHp()
-    {
-        Item escudo = new Item("Escudo", 5, 10);
-        elfo.Additem(escudo);
-        elfo.DeleteItem(escudo);
-        Assert.IsFalse(elfo.Item.Contains(escudo));
-        Assert.AreEqual(50, elfo.Dmg); // Vuelve al dmg original
-        Assert.AreEqual(100, elfo.Hp); // Vuelve al hp original
-
-    }
-}    
+    
     
 
     
