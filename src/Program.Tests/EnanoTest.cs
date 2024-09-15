@@ -27,7 +27,7 @@ public class EnanoTest
     //           enano.RestarVida(150); // Enano muerto
     //           enano.atacarMago(mago);
     //           Assert.AreEqual(100, mago.Hp); // No se resta la vida del mago
-        Elfo elfo = new Elfo("Legolas", "Masculino", 100, 100, 20);
+        Elfo elfo = new Elfo("Legolas", "Masculino", 100);
         enano.atacarElfo(elfo);
         Assert.AreEqual(50, elfo.Hp); // Resta vida al elfo
         enano.RestarVida(20); // HP actual = 15
@@ -37,7 +37,7 @@ public class EnanoTest
         enano.curar();
         Assert.AreEqual(-75, enano.Hp); // No cura porque está muerto
         Item espada = new Item("Espada", 10, 5);
-        Enano ENano = new Enano("Thorin", "Masculino", 195);
+        Enano ENano = new Enano("Fujin", "Masculino", 195);
 
         ENano.AddItem(espada);
         Assert.AreEqual(60, ENano.Dmg); // Aumenta dmg en 10

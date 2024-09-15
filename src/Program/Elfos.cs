@@ -49,7 +49,7 @@ public class Elfo
         set { vivo = value; }
     }
     
-    public Elfo(string Name, string Genero, int Edad, int Hp, int Dmg)
+    public Elfo(string Name, string Genero, int Edad)
     {
         this.Name = Name;
         this.Genero = Genero;   
@@ -97,7 +97,14 @@ public class Elfo
 
     public void cura()
     {
-        this.Hp += 25;
+        if (this.Vivo == true){
+
+            this.Hp += 25;
+        }
+        else
+        {
+            Console.WriteLine("No puedes hacer ninguna accion tu personaje esta muerto");
+        }  
     }
 
     public void RestarVida(int Daño)
