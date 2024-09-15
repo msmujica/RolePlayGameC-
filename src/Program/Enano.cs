@@ -111,8 +111,11 @@ public class  Enano
     public void curar()
     { 
         if (this.EstoyVivo == true){
-
             this.Hp += 25;
+            if (this.Hp > 100)
+            {
+                this.Hp = 100;
+            }
         }
         else
         {
