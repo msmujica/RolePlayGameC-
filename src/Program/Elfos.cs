@@ -98,8 +98,11 @@ public class Elfo
     public void cura()
     {
         if (this.Vivo == true){
-
             this.Hp += 25;
+            if (this.Hp > 100)
+            {
+                this.Hp = 100;
+            }
         }
         else
         {
