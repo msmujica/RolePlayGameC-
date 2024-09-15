@@ -132,7 +132,17 @@ public class Mago
     
     public void Heal()
     {
-        this.Hp += 25;
+        if (this.Vivo == true){
+            this.Hp += 25;
+            if (this.Hp > 100)
+            {
+                this.Hp = 100;
+            }
+        }
+        else
+        {
+            Console.WriteLine("No puedes hacer ninguna accion tu personaje esta muerto");
+        }    
     }
 
     public void RestarVida(int Daño)
