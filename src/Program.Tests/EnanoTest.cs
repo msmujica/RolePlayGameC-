@@ -97,7 +97,7 @@ public class EnanosTest
         //     Assert.Contains(espada, enano.Item);
         Assert.AreEqual(60, enano.Dmg); // Aumenta dmg en 10
         Assert.AreEqual(105, enano.Hp); // Aumenta hp en 5
-    }
+    }       
 
     [TestMethod]
     public void TestEliminarItem_DisminuyeDmgYHp()
