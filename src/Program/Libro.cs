@@ -45,7 +45,7 @@ public class Libros
             this.SetHechizos.Add(ponerHechizo);
         }
         
-        return $"{ponerHechizo.NombreHechizo} agregado";
+        return $"{ponerHechizo.NombreHechizo}";
     }
 
     public string DeleteHechizos(Hechizos sacarHechizo)
