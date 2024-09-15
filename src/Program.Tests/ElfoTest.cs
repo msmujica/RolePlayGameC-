@@ -42,6 +42,11 @@ public class ElfoTests
     {
         Elfo elfo = new Elfo("Thorin", "Masculino", 195);
         // Resta 30 puntos de vida
+        Assert.AreEqual(100, elfo.Hp); // Valor por defecto
+        Assert.AreEqual(50, elfo.Dmg); // Valor por defecto
+        Assert.IsTrue(elfo.EstoyVivo); // El personaje debe estar vivo al inicio
+        Assert.AreEqual(50, elfo.ValorAtaque());
+        Assert.AreEqual(100, elfo.ValorArmor());
         elfo.RestarVida(30);
         // Verifica que la vida restante sea la correcta
         Assert.AreEqual(70, elfo.Hp);

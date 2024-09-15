@@ -28,21 +28,24 @@ public class Libros
 
     public string AddHechizo(Hechizos ponerHechizo)
     {
+        bool existe = false;
+
         foreach (var g in this.hechizos)
         {
             if (((Hechizos)g).NombreHechizo == ponerHechizo.NombreHechizo)
             {
-                Console.Write("Ya tiene el hechizo");
+                Console.WriteLine("Ya tiene el hechizo");
+                existe = true;
                 return "Ya tiene el hechizo";
-            }
-            else
-            {
-                this.SetHechizos.Add(ponerHechizo);
             }
         }
 
-
-        return $"{ponerHechizo.NombreHechizo}";
+        if (!existe)
+        {
+            this.SetHechizos.Add(ponerHechizo);
+        }
+        
+        return $"{ponerHechizo.NombreHechizo} agregado";
     }
 
     public string DeleteHechizos(Hechizos sacarHechizo)

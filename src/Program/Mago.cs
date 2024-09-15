@@ -46,11 +46,11 @@ public class Mago
         set { item = value; }
     }
 
-    private bool estoyvivo;
-    public bool EstoyVivo
+    private bool vivo;
+    public bool Vivo
     {
-        get { return estoyvivo; }
-        set { estoyvivo = value; }
+        get { return vivo; }
+        set { vivo = value; }
     }
     
     public Mago(string Name, string Genero, int Edad, Libros grimorio)
@@ -58,17 +58,17 @@ public class Mago
         this.Name = Name;
         this.Genero = Genero;   
         this.Edad = Edad;
-        this.Dmg = 50;
+        this.Dmg = 10;
         this.Hp = 100;
         this.Item = new ArrayList();
-        this.EstoyVivo = true;
+        this.Vivo = true;
 
         this.Item.Add(grimorio);
     }
 
     public int ValorAtaque()
     {
-        return this.dmg;
+        return this.Dmg;
     }
 
     public int ValorArmor()
@@ -78,35 +78,56 @@ public class Mago
 
     public void AtacarEnano(Enano personaje, Hechizos hechiz)
     {
-        if (this.EstoyVivo == true)
+        if (this.Vivo)
         {
-            foreach (var item in this.Item)
+            foreach (var grimorio in this.Item)
             {
-                foreach (var h in ((Libros)item).SetHechizos)
+                if (grimorio is Libros libros)
                 {
-                    if (hechiz.NombreHechizo == h)
+                    foreach (var h in libros.SetHechizos)
                     {
-                        personaje.RestarVida(hechiz.DañoHechizo + this.Dmg);
+                        if (hechiz.NombreHechizo == ((Hechizos)h).NombreHechizo)
+                        {
+                            int dañoTotal = ((Hechizos)h).DañoHechizo + this.Dmg;
+                            personaje.RestarVida(dañoTotal);
+                            return;
+                        }
                     }
                 }
             }
+            Console.WriteLine("El hechizo no está en el grimorio.");
         }
         else
         {
-            Console.WriteLine("Estas Muerto.");
+            Console.WriteLine("El mago está muerto y no puede atacar.");
         }
     }
     
-    public void AtacarElfo(Elfo personaje)
+    public void AtacarElfo(Elfo personaje, Hechizos hechiz)
    {
-      if (this.EstoyVivo == true){ 
-          
-          personaje.RestarVida(this.Dmg);
-      }
-      else
-      {
-          Console.WriteLine("No puedes hacer ninguna accion tu personaje esta muerto");
-      }    
+       if (this.Vivo)
+       {
+           foreach (var grimorio in this.Item)
+           {
+               if (grimorio is Libros libros)
+               {
+                   foreach (var h in libros.SetHechizos)
+                   {
+                       if (hechiz.NombreHechizo == ((Hechizos)h).NombreHechizo)
+                       {
+                           int dañoTotal = ((Hechizos)h).DañoHechizo + this.Dmg;
+                           personaje.RestarVida(dañoTotal);
+                           return;
+                       }
+                   }
+               }
+           }
+           Console.WriteLine("El hechizo no está en el grimorio.");
+       }
+       else
+       {
+           Console.WriteLine("El mago está muerto y no puede atacar.");
+       }
    }
     
     public void Heal()
@@ -116,12 +137,12 @@ public class Mago
 
     public void RestarVida(int Daño)
     {
-        if (this.EstoyVivo == true)
+        if (this.Vivo == true)
         {
             this.Hp -= Daño;
             if (this.Hp <= 0)
             {
-                this.EstoyVivo = false;
+                this.Vivo = false;
             }
             else
             {
@@ -132,7 +153,7 @@ public class Mago
 
     public void Additem(Item nombre)
     {
-        if (this.EstoyVivo == true)
+        if (this.Vivo == true)
         {
             if(this.Item.Count < 2){
                 this.Item.Add(nombre);
@@ -148,7 +169,7 @@ public class Mago
 
     public void DeleteItem(Item nombre)
     {
-        if (this.EstoyVivo == true){
+        if (this.Vivo == true){
             
             if (this.Item.Contains(nombre))
             {
