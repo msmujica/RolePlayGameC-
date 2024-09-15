@@ -13,7 +13,7 @@ public class Item
     }
 
     private int valorataque;
-    public int ValorAtaque;
+    public int ValorAtaque
     {
         get { return valorataque; }
 		set { valorataque = value; }
