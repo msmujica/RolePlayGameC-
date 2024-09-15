@@ -3,7 +3,7 @@ using System.Security.Cryptography;
 
 namespace Ucu.Poo.Restaurant;
 
-public class Enano
+public class  Enano
 {
     private string name;
 
@@ -123,10 +123,16 @@ public class Enano
     public void AddItem(Item nombre)
     {
         if (this.EstoyVivo == true){
-
-            this.Item.Add(nombre);
-            this.Dmg += nombre.ValorAtaque;
-            this.Hp += nombre.ValorDefensa;
+            if (item.Count < 2)
+            {
+                this.Item.Add(nombre);
+                this.Dmg += nombre.ValorAtaque;
+                this.Hp += nombre.ValorDefensa;
+            }
+            else
+            {
+                Console.WriteLine("No puedes agregar mas items, elimina alguno para agregar otro."); 
+            }
         }
         else
         {
