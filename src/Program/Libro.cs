@@ -1,5 +1,7 @@
 using System.Collections;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
+using Ucu.Poo.Restaurant;
 
 public class Libros
 {
@@ -38,6 +40,8 @@ public class Libros
                 hechizos.Add(ponerHechizo);
             }
         }
+
+
         return $"{ponerHechizo.NombreHechizo}";
     }
 
@@ -51,9 +55,10 @@ public class Libros
             }
             else
             {
-                return "No se a pedido eliminar";
+                return "No puedes eliminar un hechizo que no existe";
             }
         }
+
         return "Eliminado";
     }
 
@@ -66,7 +71,4 @@ public class Libros
         }
         return $"Los hechizos que tienes son {mostrar}";
     }
-
-
-
 }

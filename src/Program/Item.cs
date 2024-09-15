@@ -1,6 +1,5 @@
 using System;
-
-namespace Library;
+namespace Ucu.Poo.Restaurant;
 
 public class Item
 {

@@ -1,3 +1,5 @@
+namespace Ucu.Poo.Restaurant;
+
 public class Hechizos
 {
     private string nombreHechizo;
